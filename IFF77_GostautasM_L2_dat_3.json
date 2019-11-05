@@ -1,19 +1,28 @@
 [
   {
-    "company": "INEAR",
-    "count": 24,
-    "price": 3749.3
+    "company": "POLARIA",
+    "count": 29,
+    "price": 3169.77
   },
   {
     "company": "MYOPIUM",
     "count": 30,
     "price": 2685.14
   },
-
+  {
+    "company": "ECRATER",
+    "count": 6,
+    "price": 2839.37
+  },
   {
     "company": "LUDAK",
     "count": 33,
     "price": 1165.17
+  },
+  {
+    "company": "FROLIX",
+    "count": 14,
+    "price": 1161.76
   },
   {
     "company": "OPPORTECH",
@@ -21,14 +30,9 @@
     "price": 2990.39
   },
   {
-    "company": "MAROPTIC",
-    "count": 6,
-    "price": 2937.69
-  },
-  {
-    "company": "BLUPLANET",
-    "count": 14,
-    "price": 1981.12
+    "company": "CANOPOLY",
+    "count": 21,
+    "price": 2291.06
   },
   {
     "company": "BIOSPAN",
@@ -46,11 +50,6 @@
     "price": 3106.78
   },
   {
-    "company": "ECRAZE",
-    "count": 2,
-    "price": 3546.32
-  },
-  {
     "company": "EVEREST",
     "count": 39,
     "price": 2173.35
@@ -66,9 +65,29 @@
     "price": 3904.96
   },
   {
+    "company": "ARCHITAX",
+    "count": 29,
+    "price": 1643.48
+  },
+  {
     "company": "PROSURE",
     "count": 38,
     "price": 1019.33
+  },
+  {
+    "company": "AQUASSEUR",
+    "count": 8,
+    "price": 3515.09
+  },
+  {
+    "company": "PEARLESSA",
+    "count": 25,
+    "price": 1332.33
+  },
+  {
+    "company": "ENDIPIN",
+    "count": 34,
+    "price": 2026.2
   },
   {
     "company": "BULLZONE",
@@ -91,9 +110,9 @@
     "price": 2328.48
   },
   {
-    "company": "ECLIPSENT",
-    "count": 4,
-    "price": 1533.9
+    "company": "GOGOL",
+    "count": 16,
+    "price": 3512.4
   },
   {
     "company": "TUBALUM",
@@ -101,9 +120,9 @@
     "price": 1094.18
   },
   {
-    "company": "REVERSUS",
-    "count": 22,
-    "price": 1765
+    "company": "DOGSPA",
+    "count": 24,
+    "price": 3584.99
   },
   {
     "company": "ZIZZLE",
@@ -111,43 +130,13 @@
     "price": 1127.75
   },
   {
-    "company": "COMVERGES",
-    "count": 39,
-    "price": 1684.13
-  },
-  {
-    "company": "JIMBIES",
-    "count": 4,
-    "price": 3681.49
-  },
-  {
     "company": "BIFLEX",
     "count": 25,
     "price": 2981.71
   },
   {
-    "company": "MOBILDATA",
-    "count": 35,
-    "price": 3015.75
-  },
-  {
-    "company": "ERSUM",
-    "count": 16,
-    "price": 3530.62
-  },
-  {
-    "company": "AMRIL",
-    "count": 19,
-    "price": 3404.2
-  },
-  {
-    "company": "NETILITY",
-    "count": 30,
-    "price": 2852.62
-  },
-  {
-    "company": "UNEEQ",
-    "count": 33,
-    "price": 3140.76
+    "company": "SCENTRIC",
+    "count": 3,
+    "price": 2651.54
   }
 ]

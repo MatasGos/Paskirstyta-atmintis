@@ -15,7 +15,7 @@ const divider = 1      //default - 10
 const modifier = 2     //default - 2
 const monitorSize = 10 //default - 10
 const threadsCount = 4
-const file = 2
+const file = 3
 
 //Thing is for storing string, int and float values in single structure
 //Result value is added later to store filter parameter
@@ -84,7 +84,7 @@ func workerThread(wg *sync.WaitGroup, id int, ch <-chan Thing, results chan<- Th
 	for value := range ch {
 		primeCount := filterCondition(value)
 
-		fmt.Println("gija - ", id, ", kompanija - ", value.Company, " skaicius - ", primeCount)
+		fmt.Println("gija - ", id, ", kompanija - ", value.Company, " uzsakymo grupavimo indeksas - ", primeCount)
 
 		if (primeCount % modifier) == 0 {
 			value.Result = primeCount
