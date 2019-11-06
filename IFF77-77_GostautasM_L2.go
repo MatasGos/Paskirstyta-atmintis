@@ -15,7 +15,7 @@ const divider = 1      //default - 10
 const modifier = 2     //default - 2
 const monitorSize = 10 //default - 10
 const threadsCount = 4
-const file = 3
+const file = 2
 
 //Thing is for storing string, int and float values in single structure
 //Result value is added later to store filter parameter
@@ -43,24 +43,21 @@ func (array *Array) add(thing Thing) {
 
 func mainThread() {
 	start := time.Now()
-	var wg sync.WaitGroup
 	var data []Thing
-	data = readJSON(fmt.Sprintf("IFF77_GostautasM_L1_dat_%d.json", file))
+	data = readJSON(fmt.Sprintf("IFF77_GostautasM_L2_dat_%d.json", file))
 
-	workerch := make(chan Thing, 10)
+	workerch := make(chan Thing, monitorSize)
 	resultsch := make(chan Thing)
-	datach := make(chan Thing)
+	datach := make(chan Thing, 1)
 	mainch := make(chan Array)
-	//donech := make(chan int)
 
 	var workersWaitGroup sync.WaitGroup
 	for i := 0; i < threadsCount; i++ {
 		workersWaitGroup.Add(1)
 		go workerThread(&workersWaitGroup, i, workerch, resultsch)
 	}
-	wg.Add(2)
-	go resultsThread(&wg, resultsch, mainch)
-	go dataThread(&wg, datach, workerch)
+	go resultsThread(resultsch, mainch)
+	go dataThread(datach, workerch)
 
 	for _, thing := range data {
 		datach <- thing
@@ -94,27 +91,21 @@ func workerThread(wg *sync.WaitGroup, id int, ch <-chan Thing, results chan<- Th
 	wg.Done()
 }
 
-func dataThread(wg *sync.WaitGroup, data <-chan Thing, worker chan<- Thing) {
+func dataThread(data <-chan Thing, worker chan<- Thing) {
 	for value := range data {
-		//fmt.Println(value.Company)
 		worker <- value
 	}
 	close(worker)
-	wg.Done()
 }
 
-func resultsThread(wg *sync.WaitGroup, resultsch <-chan Thing, mainch chan<- Array) {
+func resultsThread(resultsch <-chan Thing, mainch chan<- Array) {
 	results := Array{Things: make([]Thing, max)}
 	for value := range resultsch {
 		results.add(value)
 	}
-	for i := 0; i < results.Count; i++ {
-		fmt.Println(results.Things[i].Company)
-	}
 
 	mainch <- results
 	close(mainch)
-	wg.Done()
 }
 
 func readJSON(path string) []Thing {
@@ -160,15 +151,15 @@ func filterCondition(thing Thing) int {
 }
 
 func printToFile(data []Thing, result Array) {
-	f, _ := os.Create("./IFF77_GostautasM_L1_rez.txt")
+	f, _ := os.Create("./IFF77_GostautasM_L2_rez.txt")
 	w := tabwriter.NewWriter(f, 0, 0, 4, ' ', tabwriter.AlignRight|tabwriter.Debug)
 
 	defer f.Close()
 
-	fmt.Fprintln(w, "rezultatai")
-	fmt.Fprintln(w, "-----------\t----------\t---------------\t-------------\t")
-	fmt.Fprintln(w, "pavadinimas\tkiekis\tkaina\trezultatas\t")
-	fmt.Fprintln(w, "-----------\t----------\t---------------\t-------------\t")
+	fmt.Fprintln(w, "rezultatai")				   
+	fmt.Fprintln(w, "-----------\t----------\t---------------\t------------------------------\t")
+	fmt.Fprintln(w, "pavadinimas\tkiekis\tkaina\tuzsakymo grupavimo indeksas\t")
+	fmt.Fprintln(w, "-----------\t----------\t---------------\t------------------------------\t")
 
 	for i := 0; i < int(result.Count); i++ {
 		s := fmt.Sprintf("%s\t%d\t%f\t%d\t", result.Things[i].Company, result.Things[i].Count, result.Things[i].Price, result.Things[i].Result)
